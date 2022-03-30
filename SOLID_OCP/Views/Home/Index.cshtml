@@ -1,0 +1,81 @@
+﻿@model SOLID_OCP.Models.IncomeDetails
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1>Tax Calculator</h1>
+    <form asp-controller="Home" asp-action="Index" method="post">
+        <table cellpadding="5">
+            <tr>
+                <td><label asp-for="TotalIncome">Total Income :</label></td>
+                <td><input type="number" asp-for="TotalIncome" /></td>
+            </tr>
+            <tr>
+                <td><label asp-for="TotalDeduction">Total Deduction :</label></td>
+                <td><input type="number" asp-for="TotalDeduction" /></td>
+            </tr>
+            <tr>
+                <td><label asp-for="Country">Country :</label></td>
+                <td>
+                    <select asp-for="Country">
+                        <option value="USA">United States</option>
+                        <option value="UK">United Kingdom</option>
+                        <option value="IN">India</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Calculate Tax" /></td>
+            </tr>
+            <tr>
+                <td><strong>Total Tax : @ViewBag.TotalTax</strong></td>
+            </tr>
+        </table>
+    </form>
+
+</div>
+<hr />
+<!-- Below is Auto Scafolded Form -->
+<h4>IncomeDetails</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Index">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="TotalIncome" class="control-label"></label>
+                <input asp-for="TotalIncome" class="form-control" />
+                <span asp-validation-for="TotalIncome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TotalDeduction" class="control-label"></label>
+                <input asp-for="TotalDeduction" class="form-control" />
+                <span asp-validation-for="TotalDeduction" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Country" class="control-label"></label>
+                <select asp-for="Country">
+                    <option value="USA">United States</option>
+                    <option value="UK">United Kingdom</option>
+                    <option value="IN">India</option>
+                </select>
+                <span asp-validation-for="Country" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Calculate Tax" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <strong>Total Tax : @ViewBag.TotalTax</strong>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
